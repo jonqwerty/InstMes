@@ -1,2 +1,11 @@
-server/node_modules
+server/node_modules/
 server/.env
+
+
+InstMes_mobile/node-modules/
+
+InstMes_mobile/dist/
+InstMes_mobile/build/
+
+InstMes_mobile/npm-debug.log
+InstMes_mobile/yarn-error.log
