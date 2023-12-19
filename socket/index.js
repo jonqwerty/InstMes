@@ -23,6 +23,10 @@ io.on("connection", (socket) => {
     // send online users to front
     io.emit("getOnlineUsers", onlineUsers)
   })
+  socket.on("disconnect", () => {
+    onlineUsers = onlineUsers.filter((user) => user.socketId !== socket.id)
+    io.emit("getOnlineUsers", onlineUsers)
+  })
 })
 
 io.listen(3000)
