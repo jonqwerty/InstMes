@@ -15,6 +15,8 @@ io.on("connection", (socket) => {
         socketId: socket.id,
       })
 
+    console.log("onlineUsers -->>", onlineUsers)
+
     // send online users to front
     io.emit("getOnlineUsers", onlineUsers)
   })
@@ -22,8 +24,16 @@ io.on("connection", (socket) => {
   // add message
   socket.on("sendMessage", (message) => {
     const user = onlineUsers.find((user) => user.userId === message.recipientId)
+
+  
     if (user) {
       io.to(user.socketId).emit("getMessage", message)
+      io.to(user.socketId).emit("getNotification", {
+        senderId: message.senderId,
+        isRead: false,
+        date: new Date(),
+      })
+     
     }
   })
 
